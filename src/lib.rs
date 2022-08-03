@@ -35,6 +35,10 @@ impl Deref for Cpu {
   #[inline]
   #[must_use]
   fn deref(&self) -> &Self::Target {
+    // Safety:
+    // * Our size is the same as the new target type
+    // * Our align is greater than or equal to the new target type
+    // * All bytes in self are valid bytes in the new target type
     unsafe { &*(self as *const Self as *const CpuByteFields) }
   }
 }
@@ -42,6 +46,7 @@ impl DerefMut for Cpu {
   #[inline]
   #[must_use]
   fn deref_mut(&mut self) -> &mut Self::Target {
+    // Safety: same as Deref
     unsafe { &mut *(self as *mut Self as *mut CpuByteFields) }
   }
 }
