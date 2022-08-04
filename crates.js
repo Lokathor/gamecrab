@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["gamecrab"];
+window.ALL_CRATES = ["bitfrob","bytemuck","gamecrab"];

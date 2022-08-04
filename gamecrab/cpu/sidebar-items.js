@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["Cpu","Simulates the Game Boy’s LR35902 CPU."],["CpuByteFields","A view of the CPU with the data registers broken into individual bytes."],["Flags","The flags register."],["Reg16","A 16-bit CPU register."],["Reg8","An 8-bit CPU register."]]};
