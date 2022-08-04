@@ -13,7 +13,7 @@ use bitfrob::{u8_get_bit, u8_with_bit};
 /// hold a borrow on the CPU longer than a single statement.
 ///
 /// ```
-/// # use gamecrab::*;
+/// # use gamecrab::cpu::*;
 /// let cpu = Cpu::default();
 /// assert_eq!(cpu.bc, Reg16::default());
 /// assert_eq!(cpu.d, Reg8::default());
