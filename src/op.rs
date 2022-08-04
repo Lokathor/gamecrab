@@ -180,6 +180,86 @@ const fn q(op_code: u8) -> bool {
   u8_get_bit::<3>(op_code)
 }
 
+/// Gives the number of bytes that must come after this op code to complete the instruction.
+pub const fn op_code_tail_bytes(op_code: u8) -> usize {
+  match x(op_code) {
+    0 => match z(op_code) {
+      0 => match y(op_code) {
+        0 => 0,
+        1 => 2,
+        2 => 1, /* Stop has a trailing unused byte */
+        3 => 1,
+        y => 1,
+      },
+      1 => {
+        if q(op_code) {
+          0
+        } else {
+          2
+        }
+      }
+      2 => 0,
+      3 => 0,
+      4 => 0,
+      5 => 0,
+      6 => 1,
+      7 => 0,
+      _ => unreachable!(),
+    },
+    1 => 0,
+    2 => 0,
+    3 => match z(op_code) {
+      0 => match y(op_code) {
+        0..=3 => 0,
+        4 => 1,
+        5 => 1,
+        6 => 1,
+        7 => 1,
+        _ => unreachable!(),
+      },
+      1 => 0,
+      2 => match y(op_code) {
+        0..=3 => 2,
+        4 => 0,
+        5 => 2,
+        6 => 0,
+        7 => 2,
+        _ => unreachable!(),
+      },
+      3 => match y(op_code) {
+        0 => 2,
+        1 => 1,
+        2 => 0,
+        3 => 0,
+        4 => 0,
+        5 => 0,
+        6 => 1,
+        7 => 1,
+        _ => unreachable!(),
+      },
+      4 => match y(op_code) {
+        0..=3 => 2,
+        _ => 0,
+      },
+      5 => {
+        if q(op_code) {
+          if p(op_code) == 0 {
+            2
+          } else {
+            0
+          }
+        } else {
+          0
+        }
+      }
+      6 => 1,
+      7 => 0,
+      _ => unreachable!(),
+    },
+    _ => unreachable!(),
+  }
+}
+
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Op {
   /// `nop`
