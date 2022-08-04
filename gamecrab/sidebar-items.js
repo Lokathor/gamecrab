@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["cpu",""]]};
+window.SIDEBAR_ITEMS = {"mod":[["cpu",""],["op",""]]};
