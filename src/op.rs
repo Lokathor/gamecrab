@@ -451,7 +451,7 @@ where
 {
   type Item = (u32, Result<Op, DecodeError>);
   fn next(&mut self) -> Option<Self::Item> {
-    // If there's no bytes to pull, we don't produce an opcode. However, once
+    // If there's no bytes to pull, we don't produce an op code. However, once
     // any bytes have been pulled out, we're "locked in" to producing some sort
     // of op output, even if we have to return an "incomplete" op.
     let start_byte = self.bytes_previous;
