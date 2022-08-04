@@ -189,7 +189,7 @@ pub const fn op_code_tail_bytes(op_code: u8) -> usize {
         1 => 2,
         2 => 1, /* Stop has a trailing unused byte */
         3 => 1,
-        y => 1,
+        _y => 1,
       },
       1 => {
         if q(op_code) {
