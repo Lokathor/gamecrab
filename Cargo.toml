@@ -9,3 +9,6 @@ license = "Zlib OR Apache-2.0 OR MIT"
 [dependencies]
 bytemuck = "1.11"
 bitfrob = "0.1"
+
+[dev-dependencies]
+getrandom = "0.2"
